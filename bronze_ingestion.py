@@ -1,18 +1,9 @@
-import pandas as pd
-import os
 import bigquery_client
 
-# AWS imports import boto3
-import boto3
-from botocore.exceptions import ClientError
 import logging
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-
-aws_access_key = os.environ['AWS_ACCESS_KEY_ID']
-aws_secret_key = os.environ['AWS_SECRET_ACCESS_KEY']
-aws_region = 'us-east-1'
 
 
 config = {
