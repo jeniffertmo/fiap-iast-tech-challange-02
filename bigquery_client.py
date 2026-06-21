@@ -1,7 +1,7 @@
 import logging
 import hashlib
 import os
-import datetime
+from datetime import datetime, timezone
 from google.cloud import bigquery
 from google.api_core.exceptions import GoogleAPIError
 
