@@ -1,7 +1,9 @@
 import logging
 import hashlib
 import os
+import datetime
 from google.cloud import bigquery
+from google.api_core.exceptions import GoogleAPIError
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -30,8 +32,8 @@ def upload_to_s3(df, table, config) -> None:
     s3_client.upload_file(str(parquet_file), config['bucket']['name'], f'{config["paths"]["bronze"]}{parquet_file}')
 
 
-def ingest_from_bigquery(tables, config) -> dict:
-    dfs = {}
+def ingest_from_bigquery(tables, config) -> None:
+    INGESTION_TIMESTAMP = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
 
     client = bigquery.Client()
 
@@ -47,7 +49,7 @@ def ingest_from_bigquery(tables, config) -> dict:
             raise
         logger.info("[+] Appending to ingestion dataframes")
         df = query_job.to_dataframe()
-        df['_ingestion_timestamp_'] = 'today'
+        df['_ingestion_timestamp_'] = INGESTION_TIMESTAMP
         df['_source_dataset_'] = 'basedosdados'
         df['_source_table_'] = table
         df['_record_hash'] = df.drop(
@@ -59,5 +61,3 @@ def ingest_from_bigquery(tables, config) -> dict:
         logger.info("   Colunes: %s", list(df.columns))
 
         upload_to_s3(df, table, config)
-
-    return dfs
