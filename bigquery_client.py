@@ -26,11 +26,14 @@ def ingest_from_bigquery(tables, config) -> None:
             raise
         logger.info("[+] Appending to ingestion dataframes")
         df = query_job.to_dataframe()
-        df['_ingestion_timestamp_'] = INGESTION_TIMESTAMP
-        df['_source_dataset_'] = 'basedosdados'
-        df['_source_table_'] = table
+        df['_ingestion_timestamp'] = INGESTION_TIMESTAMP
+        df['_source_dataset'] = 'basedosdados'
+        df['_source_table'] = table
+        # We remove the metadata table, as to only hash on the content
+        # TODO: implement a function to hash tables, make it so it accepts
+        # generic metadata as long as it follows a pattern
         df['_record_hash'] = df.drop(
-            columns=['_ingestion_timestamp', '_source_url', '_source_system'],
+            columns=['_ingestion_timestamp', '_source_dataset', '_source_table'],
             errors='ignore'
         ).apply(lambda row: hashlib.md5(str(row.values).encode()).hexdigest(), axis=1)
 
