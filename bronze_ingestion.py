@@ -30,31 +30,12 @@ config = {
 
 
 if __name__ == '__main__':
-    #tables = ['alunos', 'dicionario', 'meta_alfabetizacao_brasil', 'meta_alfabetizacao_municipio', 'meta_alfabetizacao_uf', 'municipio', 'uf']
-    tables = ['alunos']
-
-
-    s3_client = boto3.client(
-        's3',
-        aws_access_key_id=aws_access_key,
-        aws_secret_access_key=aws_secret_key,
-        region_name=aws_region
-    )
-
-    bucket = config['bucket']['name']
-
-    for path in config['paths'].values():
-        try:
-            # Check if the folder placeholder object exists}
-            s3_client.head_object(Bucket=bucket, Key=path)
-            logger.info(f"{path} folder already exists.")
-        except ClientError as e:
-            # A 404 error means the folder does not exist
-            if e.response['Error']['Code'] == '404':
-                s3_client.put_object(Bucket=bucket, Key=path)
-                logger.info(f"{path} folder created successfully.")
-            else:
-                # Something else went wrong (e.g., permissions issues)
-                logger.info(f"An error occurred: {e}")
+    tables = ['alunos',
+              'dicionario',
+              'meta_alfabetizacao_brasil',
+              'meta_alfabetizacao_municipio',
+              'meta_alfabetizacao_uf',
+              'municipio',
+              'uf']
 
     dfs = bigquery_client.ingest_from_bigquery(tables, config)
