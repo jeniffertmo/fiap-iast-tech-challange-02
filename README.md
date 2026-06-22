@@ -19,6 +19,10 @@
     - https://docs.aws.amazon.com/glue/latest/dg/components-overview.html
     - Writing a hello world in AWS Glue https://docs.aws.amazon.com/glue/latest/dg/example_glue_Hello_section.html
 
+- Developing Glue Localy
+    - https://aws.amazon.com/blogs/big-data/develop-and-test-aws-glue-5-0-jobs-locally-using-a-docker-container/
+
+
 
 ### Diagrama da Arquitetura
 
