@@ -1,8 +1,8 @@
 resource "aws_s3_bucket" "medallion-bucket" {
-  bucket = "fiap-datalake-tech"
+  bucket = local.datalake_bukcet
 
   tags = {
-    Name        = var.medallion-bucket
+    Name        = local.datalake_bukcet
     Environment = "Dev"
   }
 
@@ -21,7 +21,7 @@ resource "aws_s3_bucket" "glue-scripts-bucket" {
   bucket = local.glue_scripts_bucket
 
   tags = {
-    Name        = "fiap-datalake-tech-glue-scripts"
+    Name        = local.glue_scripts_bucket
     Environment = "Dev"
   }
 
