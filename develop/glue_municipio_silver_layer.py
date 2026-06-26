@@ -27,6 +27,7 @@ lookup_rede = (
         col('valor').alias('rede_label')
     )
 )
+df = df.join(lookup_rede, on='rede', how='left')
 
 df.show(20)
 
