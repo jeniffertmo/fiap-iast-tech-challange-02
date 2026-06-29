@@ -6,4 +6,3 @@ resource "aws_vpc" "main" {
     Name = "fiap-datalake-tech-vpc"
   }
 }
-
