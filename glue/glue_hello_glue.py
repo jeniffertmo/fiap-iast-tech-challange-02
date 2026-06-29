@@ -32,9 +32,9 @@ if __name__ == "__main__":
     glueContext = GlueContext(sc)
 
     logger = glueContext.get_logger()
-    logger.info("info message")
-    logger.warn("warn message")
-    logger.error("error message")
+    logger.info("info: message")
+    logger.warn("warn: message")
+    logger.error("error: message")
 
     hello_glue()
 
