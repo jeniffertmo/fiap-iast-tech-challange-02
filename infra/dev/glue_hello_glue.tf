@@ -41,4 +41,5 @@ resource "aws_s3_object" "glue_etl_script" {
   bucket = aws_s3_bucket.glue_scripts.id
   key    = "jobs/glue_hello_glue.py"
   source = "../../glue/glue_hello_glue.py"
+  etag   = filemd5("../../glue/glue_hello_glue.py")
 }
