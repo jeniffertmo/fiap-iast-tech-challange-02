@@ -25,3 +25,4 @@ docker run -it --rm  -v ~/.aws:/home/hadoop/.aws \
 
 - Docker for MacOS and Linux must be installed, Docker for Desktop must be installed on Windows
 - AWS Cli must be installed
+- Python3 and Pip3 must be instaled
