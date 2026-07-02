@@ -1,20 +1,34 @@
-import logging
-from pyspark.sql import SparkSession
+from awsglue.context import GlueContext
+from awsglue.job import Job
+from pyspark.context import SparkContext
 
-spark = SparkSession.builder.getOrCreate()
+BUCKET = "s3://fiap-datalake-tech"
+ENTITY = "dicionario"
 
-bucket = 's3://fiap-datalake-tech'
-table = 'dicionario'
+BRONZE_METADATA = [
+    "_ingestion_timestamp",
+    "_ingestion_date",
+    "_source_path",
+    "_source_entity",
+    "_environment",
+]
 
-df = spark.read.parquet(f"{bucket}/bronze/{table}.parquet")
-print('Raw schema')
+sc = SparkContext()
+glueContext = GlueContext(sc)
+spark = glueContext.spark_session
+job = Job(glueContext)
+job.init(f"silver-{ENTITY}")
+
+df = spark.read.parquet(f"{BUCKET}/bronze/{ENTITY}/")
+
+print("Bronze schema:")
 df.printSchema()
-# deduplicate
-df = df.dropDuplicates(['_record_hash'])
-# drop bronze metadata
-df = df.drop('_source_dataset', '_source_table', '_bronze_ingestion_timestamp')
-#
-df = df.drop('cobertura_temporal')
-print('Silver schema')
-df.printSchema()
-df.write.mode("overwrite").parquet(f"{bucket}/silver/dicionario/")
+
+df_silver = df.drop(*BRONZE_METADATA).dropDuplicates()
+
+print("Silver schema:")
+df_silver.printSchema()
+
+df_silver.write.mode("overwrite").parquet(f"{BUCKET}/silver/{ENTITY}/")
+
+job.commit()

@@ -1,18 +1,21 @@
 from awsglue.context import GlueContext
 from awsglue.job import Job
+from awsglue.utils import getResolvedOptions
 from pyspark.context import SparkContext
 import pyspark.sql.functions as F
 from datetime import datetime, timezone
+import sys
 
-JOB_NAME = "bigquery-read-dicionario"
+args   = getResolvedOptions(sys.argv, ["JOB_NAME", "table"])
+ENTITY = args["table"]
+
 BUCKET   = "fiap-datalake-tech"
-ENTITY   = "dicionario"
-BQ_TABLE = "basedosdados.br_inep_avaliacao_alfabetizacao.dicionario"
+BQ_TABLE = f"basedosdados.br_inep_avaliacao_alfabetizacao.{ENTITY}"
 
 sc = SparkContext()
 glueContext = GlueContext(sc)
 job = Job(glueContext)
-job.init(JOB_NAME)
+job.init(args["JOB_NAME"])
 
 now = datetime.now(timezone.utc)
 INGESTION_TS   = now.strftime("%Y-%m-%d %H:%M:%S")
