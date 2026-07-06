@@ -3,18 +3,17 @@ resource "aws_s3_bucket" "datalake" {
 
   tags = {
     Name        = local.datalake_bukcet
-    Environment = "Dev"
+    Environment = var.environment
   }
 
   force_destroy = true
 }
 
 resource "aws_s3_object" "layers" {
-  for_each = toset(local.layers)
+  for_each     = toset(local.layers)
   bucket       = aws_s3_bucket.datalake.id
   key          = each.value
   content_type = "application/x-directory"
-
 }
 
 resource "aws_s3_bucket" "glue_scripts" {
@@ -22,7 +21,18 @@ resource "aws_s3_bucket" "glue_scripts" {
 
   tags = {
     Name        = local.glue_scripts_bucket
-    Environment = "Dev"
+    Environment = var.environment
+  }
+
+  force_destroy = true
+}
+
+resource "aws_s3_bucket" "athena_queries" {
+  bucket = local.athena_queries_bucket
+
+  tags = {
+    Name        = local.athena_queries_bucket
+    Environment = var.environment
   }
 
   force_destroy = true

@@ -1,9 +1,8 @@
-# ETL Infrastructure Terraform
+# Infraestrutura da pipeline ETL
 
-## TODO
-### Glue Jobs
-- [X] Crete a bucket for storing the medallion archtecture
-- [ ] Create a AWS glue assets to store glue scripts
-- [ ] Create a VPC and subnet for AWS glue
-- [ ] Create VPC endpoints required for AWS glue
+## Sumário
 
+## Requirementos
+
+- AWS credentials: Deve estar presenta um `~/.aws/credentials` com credenciais para o usuário da conta AWS a ser utilizada. 
+- [OpenTofu](https://opentofu.org/): Usado para provisionar, gerenciar e destruir a infraestrutura, sendo uma opção free software e open source do Terraform.

@@ -7,7 +7,6 @@ resource "aws_glue_job" "etl_job" {
   timeout           = 2880
   number_of_workers = 2
   worker_type       = "G.1X"
-  connections       = [aws_glue_connection.example.name]
   execution_class   = "STANDARD"
 
   command {
@@ -17,7 +16,7 @@ resource "aws_glue_job" "etl_job" {
   }
 
   notification_property {
-    notify_delay_after = 3 # delay in minutes
+    notify_delay_after = 3
   }
 
   default_arguments = {
@@ -34,12 +33,13 @@ resource "aws_glue_job" "etl_job" {
   }
 
   tags = {
-    "ManagedBy" = "AWS"
+    "ManagedBy" = "Terraform"
   }
 }
 
 resource "aws_s3_object" "glue_etl_script" {
   bucket = aws_s3_bucket.glue_scripts.id
   key    = "jobs/glue_hello_glue.py"
-  source = "../develop/glue_hello_glue.py" 
+  source = "../../glue/glue_hello_glue.py"
+  etag   = filemd5("../../glue/glue_hello_glue.py")
 }
