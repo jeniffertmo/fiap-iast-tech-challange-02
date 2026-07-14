@@ -4,7 +4,6 @@
 Pipeline Híbrida para Análise da Alfabetização no Brasil
 
 ## Desafio Educacional
-<img width="233" height="214" alt="image" src="https://github.com/user-attachments/assets/5f3176fc-d62c-4e10-ac19-0e37f240aca1" />
 
 ### Indicador de Alfabetização
 Existem 3 indicadores que são gerados na camada gold do pipeline disponiveis para utilização em camadas de consumo como Power BI, Looker, Tableau, Excel, etc. Abaixo uma pequena descriação de cada um deles:
