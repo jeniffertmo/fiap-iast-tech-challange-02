@@ -1,10 +1,22 @@
 # IAST FAIP - Tech Challange 2
 
 # Contexto do Problema
+Pipeline Híbrida para Análise da Alfabetização no Brasil
 
 ## Desafio Educacional
+<img width="233" height="214" alt="image" src="https://github.com/user-attachments/assets/5f3176fc-d62c-4e10-ac19-0e37f240aca1" />
 
 ### Indicador de Alfabetização
+Existem 3 indicadores que são gerados na camada gold do pipeline disponiveis para utilização em camadas de consumo como Power BI, Looker, Tableau, Excel, etc. Abaixo uma pequena descriação de cada um deles:
+
+Indicador de Alfabetização por Município 📊
+Mede a taxa de alfabetização real em cada município, mostrando quantos alunos avaliados estão alfabetizados. Essa visão permite acompanhar o desempenho local e identificar municípios com maiores desafios ou avanços.
+
+Comparativo Metas vs Resultados 🎯
+Compara os resultados reais de alfabetização com as metas estabelecidas para cada município. Indica se a meta foi atingida, ficou abaixo ou ainda não foi definida. É essencial para monitorar políticas públicas e avaliar se os objetivos planejados estão sendo cumpridos.
+
+Evolução Temporal por Estado 📈
+Analisa a evolução da taxa de alfabetização ao longo dos anos em cada estado. Essa visão mostra tendências regionais e permite identificar se há progresso contínuo ou estagnação, apoiando decisões estratégicas em nível estadual.
 
 ## Aplicações em IA
 
@@ -25,6 +37,8 @@
 
 
 ### Diagrama da Arquitetura
+<img width="378" height="169" alt="image" src="https://github.com/user-attachments/assets/f63aa521-8c06-4bfc-8ce3-55892eac58a2" />
+
 
 ### Diagrama da Pipeline
 
