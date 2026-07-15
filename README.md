@@ -23,6 +23,18 @@ Analisa a evolução da taxa de alfabetização ao longo dos anos em cada estado
 
 ## Estrutura do Repositório
 
+```sh
+.
+├── glue/        - pasta com os arquivos de glue jobs dividido em camadas
+│   ├── bronze
+│   ├── silve
+│   └── gold
+├── infra/       - infraestrutura como código dividido em ambientes  
+│   ├── dev
+│   └── prd
+└── src/         - bibliotecas para usar com o glue
+```
+
 ## Arquitetura da Solução
 
 - AWS Glue: usado para a execução dos workloads de ETL. References:
