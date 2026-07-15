@@ -8,6 +8,17 @@ A alfabetização na infância é essencial para o desenvolvimento educacional e
 
 A construção de um pipeline híbrido para análise da alfabetização no Brasil combina batch para consolidar grandes volumes de microdados e aplicar regras de qualidade com streaming para capturar eventos em tempo real, como presenças e avaliações. Essa integração garante dados confiáveis, auditáveis e atualizados, permitindo insights acionáveis para gestores educacionais acompanharem continuamente o desafio da alfabetização infantil. 
 
+## Fontes Raw:
+BigQuery: https://basedosdados.org/dataset/073a39d4-89cf-4068-b1e8-34ed0d9c0b72?table=7088028a-f140-4d45-9e2f-7654eda01f38
+- UF
+- Municipios
+- Meta Brasil
+- Meta UF
+- Meta Municipios
+
+CSV - Microdados da avaliação da alfabetização (2023, 2024 e 2025): https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/avaliacao-da-alfabetizacao/resultados
+- Alunos
+
 ### Indicador de Alfabetização
 Existem 3 indicadores que são gerados na camada gold do pipeline disponíveis para utilização em camadas de consumo como Power BI, Looker, Tableau, Excel, etc. Abaixo uma pequena descrição de cada um deles:
 
