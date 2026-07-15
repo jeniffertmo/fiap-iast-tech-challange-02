@@ -42,15 +42,16 @@ A construção de um pipeline híbrido para análise da alfabetização no Brasi
 
 ```sh
 .
-├── glue/        - pasta com os arquivos de glue jobs dividido em camadas
+├── glue/              - pasta com os arquivos de glue jobs dividido em camadas
 │   ├── bronze
 │   ├── silve
 │   └── gold
-├── infra/       - infraestrutura como código dividido em ambientes  
+├── infra/             - infraestrutura como código dividido em ambientes  
 │   ├── monitoring
 │   ├── dev
 │   └── prd
-└── src/         - bibliotecas para usar com o glue
+├── jupyter-notebooks  - edas e outros notebooks exploratorios
+└── src/               - bibliotecas para usar com o glue
 ```
 ## Arquitetura da Solução
 
